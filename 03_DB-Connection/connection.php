@@ -5,16 +5,12 @@ $DBName = "TestDB";
 $server = "127.0.0.1";
 $serverName = "localhost";
 
-$mysqli = mysqli_connect($server, $user, $password);
+$mysqli = mysqli_connect($server, $user, $password, $DBName);
 
 if($mysqli->connect_errno)
 {
     echo "Errööör";
     exit("Server is broken :(");
-}
-else
-{
-    echo "Connection established!";
 }
 
 $GLOBALS['DBConnection'] = $mysqli;
