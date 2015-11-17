@@ -14,3 +14,5 @@ if($mysqli->connect_errno)
 }
 
 $GLOBALS['DBConnection'] = $mysqli;
+
+$db->close();
