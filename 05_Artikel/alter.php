@@ -22,22 +22,45 @@ if(isset($_GET['nr']))
 {
     $nr = $_GET['nr'];
 }
+else
+{
+    $nr = null;
+}
 
 if(isset($_GET['artnr']))
 {
     $artnr = $_GET['artnr'];
 }
+else
+{
+    $artnr = null;
+}
+
 if(isset($_GET['titel']))
 {
     $titel = $_GET['titel'];
 }
+else
+{
+    $titel = null;
+}
+
 if(isset($_GET['preis']))
 {
     $preis = $_GET['preis'];
 }
+else
+{
+    $preis = null;
+}
+
 if(isset($_GET['inhalt']))
 {
     $inhalt = $_GET['inhalt'];
+}
+else
+{
+    $inhalt = null;
 }
 
 $meldung = "Keine Meldung";
@@ -77,22 +100,25 @@ $inhalt = $resultArray['inhalt'];
     <form action=<?php echo $PHP_SELF; ?> method=get>
     <input type=hidden name=action value="save">
     <input type=hidden name=nr VALUE="<?php echo $nr ?>">
-<tr>
-<td>Art.-Nr.</td>
-<td><input type=text name="artnr" value="<?php echo $artnr ?>"></td>
-</tr><tr>
-<td>Titel</td>
-<td><input type=text name="titel" value="<?php echo $titel ?>"></td>
-</tr><tr>
-<td>Preis</td>
-<td><input type=text name="preis" value="<?php echo $preis ?>"></td>
-</tr><tr>
-<td>Text</td>
-<td><textarea name="inhalt"><?php echo $inhalt ?></textarea><td>
-</tr><tr>
-</tr> </td>
-<td><input type=submit value="Artikel Updaten"></form></td>
-</tr>
+    <tr>
+        <td><label for="artnr">Art.-Nr.</label></td>
+        <td><input id="artnr" type=text name="artnr" value="<?php echo $artnr ?>"></td>
+    </tr>
+    <tr>
+        <td><label for="titel">Titel</label></td>
+        <td><input id="titel" type=text name="titel" value="<?php echo $titel ?>"></td>
+    </tr>
+    <tr>
+        <td><label for="preis">Preis</label></td>
+        <td><input id="preis" type=text name="preis" value="<?php echo $preis ?>"></td>
+    </tr>
+    <tr>
+        <td><label for="inhalt">Text</label></td>
+        <td><textarea id="inhalt" name="inhalt"><?php echo $inhalt ?></textarea>
+    </tr>
+    <tr>
+        <td><input type=submit value="Artikel Updaten"></form></td>
+    </tr>
 </table><p>
 
 <?php
@@ -102,33 +128,33 @@ $inhalt = $resultArray['inhalt'];
 
 ?>
 <table>
-<form action=<?php echo $PHP_SELF; ?> method=get>
-<input type=hidden name=action value="neu">
-<tr>
-<td>Art.-Nr.</td>
-<td><input type=text name="artnr"></td>
-</tr><tr>
-<td>Titel</td>
-<td><input type=text name="titel"></td>
-</tr><tr>
-<td>Preis</td>
-<td><input type=text name="preis"></td>
-
-
-</tr><tr>
-<td>Text</td>
-<td><textarea name="inhalt"></textarea></td>
-</tr><tr>
-<td> </td>
-<td><input type=submit value="Neuen Artikel hinzufügen"></form></td>
-</tr>
+    <form action=<?php echo $PHP_SELF; ?> method=get>
+    <input type=hidden name=action value="neu">
+    <tr>
+        <td><label for="artnr">Art.-Nr.</label></td>
+        <td><input id="artnr" type=text name="artnr"></td>
+    </tr>
+    <tr>
+        <td><label for="titel">Titel</label></td>
+        <td><input id="titel" type=text name="titel"></td>
+    </tr>
+    <tr>
+        <td><label for="preis">Preis</label></td>
+        <td><input id="preis" type=text name="preis"></td>
+    </tr>
+    <tr>
+        <td><label for="inhalt">Text</label></td>
+        <td><textarea id="inhalt" name="inhalt"></textarea></td>
+    </tr>
+    <tr>
+        <td> </td>
+        <td><input type=submit value="Neuen Artikel hinzufügen"></form></td>
+    </tr>
 </table><p>
 
 <?php
 // Gibt alle Datensätze aus der Datenbank aus.
 } else {
-
-
 
 echo "<ol><b>Alle Artikel in der Übersicht:</b>";
 echo "<br>";
@@ -145,21 +171,6 @@ if ($num = mysqli_num_rows($result)) {
 // Ausgabe der Datensätze, wenn vorhanden
 for ($i=0;$i < $num; $i++) {
 
-/* zusätzlicher Counter
-$z++; //bincounter
-if($z == 1)
-{    $bgColor = "#CCCCCC"; }
-else
-{    $bgColor = "#FFFFFF"; } */
-// Gibt alle Datensätze in wechselfarbigen Tabellenreihen aus(1).
-
-/* Abfrage der Variable ($i/2) ergibt eine Floatzahl
-if(strpos(($i/2),".")==false)
-{    $bgColor = "#CCCCCC"; }
-else
-{    $bgColor = "#FFFFFF"; } */
-// Gibt alle Datensätze in wechselfarbigen Tabellenreihen aus(2).
-
 if(isset($bgColor))
 {
     $bgColor = $bgColor=="#ffffff" ?  "#888888" : "#ffffff";
@@ -168,11 +179,6 @@ else
 {
     $bgColor = "#888888";
 }
-
-// Streifen-Muster / verkuerzte if(bedingung){ } else{}-Verzweigung
-// Bedingung ? Erfuellt-Fall : Nichterfuellt-Fall
-// Falls der Inhalt der Variable $bgColor #ff00ff" ist, wird er auf
-// #888888 gesetzt, ansonsten auf #ff00ff
 
 $resultArray = $result->fetch_assoc();
 $titel = $resultArray['titel'];
@@ -190,10 +196,6 @@ echo "<td><a href=\"$PHP_SELF?nr=$nr&action=update\">Update</a></td>";
 echo "<td><a href=\"$PHP_SELF?nr=$nr&action=loeschen\">Löschen</a></td>"; }
 echo "</tr>";
 
-/*if($z==1) 
-{     $z = -1;} //bincounter 1 | 0
-
-} */
 } else echo "<tr><td colspan='6' width='100%'>kein Artikel vorhanden!</td></tr>";
 echo "</table>";
 echo "</ol>";
