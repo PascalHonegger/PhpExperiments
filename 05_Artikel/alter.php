@@ -9,18 +9,35 @@ $database = "artikel";
 
 $connection = mysqli_connect ($host, $id, $pw, $database);
 
-if(isset($_POST['action']))
+if(isset($_GET['action']))
 {
-    $action = $_POST['action'];
+    $action = $_GET['action'];
 }
 else
 {
-    $action = "asdf";
+    $action = "Keine Aktion";
 }
 
-if(isset($_POST['nr']))
+if(isset($_GET['nr']))
 {
-    $nr = $_POST['nr'];
+    $nr = $_GET['nr'];
+}
+
+if(isset($_GET['artnr']))
+{
+    $artnr = $_GET['artnr'];
+}
+if(isset($_GET['titel']))
+{
+    $titel = $_GET['titel'];
+}
+if(isset($_GET['preis']))
+{
+    $preis = $_GET['preis'];
+}
+if(isset($_GET['inhalt']))
+{
+    $inhalt = $_GET['inhalt'];
 }
 
 $meldung = "Keine Meldung";
@@ -35,10 +52,7 @@ $meldung = "Der Artikel wurde gelöscht.";
 // Aktualisiert einen Datensatz
 } elseif($action == "save") {
 
-$artnr = $_POST['artnr'];
-$titel = $_POST['titel'];
-$preis = $_POST['preis'];
-$inhalt = $_POST['inhalt'];
+
 mysqli_query($connection, "update artikel1 set artnr = $artnr, titel = '$titel', preis = '$preis', inhalt =
 '$inhalt' where nr = '$nr'");
 $meldung = "Der Artikel wurde upgedated.";
@@ -60,7 +74,7 @@ $inhalt = $resultArray['inhalt'];
 ?>
 
 <table>
-    <form action=<?php echo $PHP_SELF; ?> method=post>
+    <form action=<?php echo $PHP_SELF; ?> method=get>
     <input type=hidden name=action value="save">
     <input type=hidden name=nr VALUE="<?php echo $nr ?>">
 <tr>
@@ -88,7 +102,7 @@ $inhalt = $resultArray['inhalt'];
 
 ?>
 <table>
-<form action=<?php echo $PHP_SELF; ?> method=post>
+<form action=<?php echo $PHP_SELF; ?> method=get>
 <input type=hidden name=action value="neu">
 <tr>
 <td>Art.-Nr.</td>
