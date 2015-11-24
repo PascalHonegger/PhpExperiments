@@ -1,45 +1,32 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <component name="dataSourceStorage">
-  <data-source name="MySQL - TestDB@localhost" uuid="6824f0a7-2611-4182-ae09-442e2323eda5">
+  <data-source name="MySQL - artikel@localhost" uuid="366be572-df9a-45e8-a652-03b983266b70">
     <database-info product="MySQL" version="5.5.5-10.0.17-MariaDB" jdbc-version="4.0" driver-name="MySQL Connector Java" driver-version="mysql-connector-java-5.1.35 ( Revision: 5fb9c5849535c13917c2cf9baaece6ef9693ef27 )">
       <extra-name-characters>#@</extra-name-characters>
       <identifier-quote-string>`</identifier-quote-string>
     </database-info>
     <case-sensitivity plain-identifiers="lower" quoted-identifiers="lower"/>
     <database-model serializer="dbm" rdbms="MYSQL" format-version="2.2">
-      <schema id="1" name="testdb"/>
-      <table id="2" parent="1" name="testtabelle"/>
-      <table id="3" parent="1" name="createdbyide"/>
-      <column id="4" parent="2" name="Username">
-        <mandatory>1</mandatory>
-        <data-type>text</data-type>
-      </column>
-      <column id="5" parent="2" name="Password">
-        <mandatory>1</mandatory>
-        <data-type>text</data-type>
-      </column>
-      <column id="6" parent="2" name="RandomNumber">
+      <schema id="1" name="artikel"/>
+      <table id="2" parent="1" name="artikel1"/>
+      <column id="3" parent="2" name="nr">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="7" parent="2" name="Lol4">
-        <mandatory>1</mandatory>
+      <column id="4" parent="2" name="titel">
+        <data-type>varchar(255)</data-type>
+      </column>
+      <column id="5" parent="2" name="artnr">
         <data-type>int(11)</data-type>
       </column>
-      <column id="8" parent="3" name="index">
-        <mandatory>1</mandatory>
-        <data-type>int(11)</data-type>
+      <column id="6" parent="2" name="preis">
+        <data-type>decimal(10,2)</data-type>
       </column>
-      <column id="9" parent="3" name="Username">
-        <mandatory>1</mandatory>
+      <column id="7" parent="2" name="inhalt">
         <data-type>text</data-type>
       </column>
-      <column id="10" parent="3" name="Password">
-        <mandatory>1</mandatory>
-        <data-type>varchar(40)</data-type>
-      </column>
-      <key id="11" parent="3" name="PRIMARY">
-        <columns>index</columns>
+      <key id="8" parent="2" name="PRIMARY">
+        <columns>nr</columns>
         <primary>1</primary>
       </key>
     </database-model>
