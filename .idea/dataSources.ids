@@ -9,24 +9,49 @@
     <database-model serializer="dbm" rdbms="MYSQL" format-version="2.2">
       <schema id="1" name="artikel"/>
       <table id="2" parent="1" name="artikel1"/>
-      <column id="3" parent="2" name="nr">
+      <table id="3" parent="1" name="login"/>
+      <column id="4" parent="2" name="nr">
         <mandatory>1</mandatory>
         <data-type>int(11)</data-type>
       </column>
-      <column id="4" parent="2" name="titel">
+      <column id="5" parent="2" name="titel">
         <data-type>varchar(255)</data-type>
       </column>
-      <column id="5" parent="2" name="artnr">
+      <column id="6" parent="2" name="artnr">
         <data-type>int(11)</data-type>
       </column>
-      <column id="6" parent="2" name="preis">
+      <column id="7" parent="2" name="preis">
         <data-type>decimal(10,2)</data-type>
       </column>
-      <column id="7" parent="2" name="inhalt">
+      <column id="8" parent="2" name="inhalt">
         <data-type>text</data-type>
       </column>
-      <key id="8" parent="2" name="PRIMARY">
+      <key id="9" parent="2" name="PRIMARY">
         <columns>nr</columns>
+        <primary>1</primary>
+      </key>
+      <column id="10" parent="3" name="id">
+        <mandatory>1</mandatory>
+        <data-type>int(11)</data-type>
+      </column>
+      <column id="11" parent="3" name="username">
+        <mandatory>1</mandatory>
+        <data-type>varchar(50)</data-type>
+      </column>
+      <column id="12" parent="3" name="password">
+        <mandatory>1</mandatory>
+        <data-type>varchar(30)</data-type>
+      </column>
+      <index id="13" parent="3" name="login_username_uindex">
+        <columns>username</columns>
+        <unique>1</unique>
+      </index>
+      <key id="14" parent="3" name="login_username_uindex">
+        <columns>username</columns>
+        <underlying-index>login_username_uindex</underlying-index>
+      </key>
+      <key id="15" parent="3" name="PRIMARY">
+        <columns>id</columns>
         <primary>1</primary>
       </key>
     </database-model>

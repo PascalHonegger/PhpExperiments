@@ -1,67 +1,43 @@
 <?php
-// Systemeinstellungen
+/**
+ * Created by Pascal
+ * Date: 01.12.2015
+ */
+
+// Systemeinstellungen Artikel
 $id = "root";
 $pw = "";
 $host = "localhost";
 $database = "artikel";
-
 // Einstellungen Ende
+
+session_start();
+
+// Validierung Anmeldung
+
+$angemeldet = isset($_SESSION['angemeldet']) ? $_SESSION['angemeldet'] : false;
+
+if(!$angemeldet)
+{
+    header("Location: index.php");
+    die("Diese Datei sollte tot sein!");
+}
+
+// Validierung erfolgreich
 
 $connection = mysqli_connect ($host, $id, $pw, $database);
 
-if(isset($_GET['action']))
-{
-    $action = $_GET['action'];
-}
-else
-{
-    $action = "Keine Aktion";
-}
+$action = isset($_GET['action']) ? $_GET['action'] : "Keine Aktion";
 
-if(isset($_GET['nr']))
-{
-    $nr = $_GET['nr'];
-}
-else
-{
-    $nr = null;
-}
+$nr = isset($_GET['nr']) ? $_GET['nr'] : null;
 
-if(isset($_GET['artnr']))
-{
-    $artnr = $_GET['artnr'];
-}
-else
-{
-    $artnr = null;
-}
+$artnr = isset($_GET['artnr']) ? $_GET['artnr'] : null;
 
-if(isset($_GET['titel']))
-{
-    $titel = $_GET['titel'];
-}
-else
-{
-    $titel = null;
-}
+$titel = isset($_GET['titel']) ? $_GET['titel'] : null;
 
-if(isset($_GET['preis']))
-{
-    $preis = $_GET['preis'];
-}
-else
-{
-    $preis = null;
-}
+$preis = isset($_GET['preis']) ? $_GET['preis'] : null;
 
-if(isset($_GET['inhalt']))
-{
-    $inhalt = $_GET['inhalt'];
-}
-else
-{
-    $inhalt = null;
-}
+$inhalt = isset($_GET['inhalt']) ? $_GET['inhalt'] : null;
 
 $meldung = "Keine Meldung";
 
